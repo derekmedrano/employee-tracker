@@ -21,12 +21,23 @@ function init() {
         console.log(answers);
     
         switch(answers.option) {
+
             case 'View All Departments':
                 viewDepartments();
                 break;
+
             case 'View All Roles':
                 viewRoles();
                 break;
+
+            case 'View All Employees':
+                ViewEmployees();
+                break;   
+
+            case 'Add a Role':
+                ViewEmployees();
+                break;   
+
             default:
                 console.log("Error");
         }
@@ -67,6 +78,38 @@ function viewRoles() {
     });
 
 }
+
+function ViewEmployees() {
+    // we make an ASYNC QUERY to our DB 
+    db.query("SELECT * FROM employee;", function(error, data) {
+        if(error) {
+            console.log("error: ", error);
+        }
+    
+        console.table(data);
+       // console.error(data);
+
+        init();
+    });
+
+}
+
+function addDepartment() {
+    // we make an ASYNC QUERY to our DB 
+    db.query("ALTER TABLE department ADD COLUMN", function(error, data) {
+        if(error) {
+            console.log("error: ", error);
+        }
+    
+        console.table(data);
+       // console.error(data);
+
+        init();
+    });
+
+}
+
+
 
 
 // start our code/app
