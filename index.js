@@ -9,22 +9,23 @@ function init() {
             type: 'list',
             name: 'option',
             message: 'What would you like to see?',
-            choices: ['view all departments', 
-                'view all roles', 
-                'view all employees',
-                 'add a department', 
-                 'add a role', 
-                 'add an employee',
-                 'update an employee role']
+            choices: ['View All Departments', 
+                'View All Roles', 
+                'View All Employees',
+                 'Add a Department', 
+                 'Add a Role', 
+                 'Add an Employee',
+                 'Update an Employee Role']
         },
     ]).then(answers => {
         console.log(answers);
     
         switch(answers.option) {
-            case 'view all departments':
+            case 'View All Departments':
                 viewDepartments();
                 break;
-            case 'view all roles':
+            case 'View All Roles':
+                viewRoles();
                 break;
             default:
                 console.log("Error");
@@ -50,8 +51,21 @@ function viewDepartments() {
         init();
     });
 
-    // not here due to ASYNC nature !!!
-    //init()
+}
+
+function viewRoles() {
+    // we make an ASYNC QUERY to our DB 
+    db.query("SELECT * FROM role;", function(error, data) {
+        if(error) {
+            console.log("error: ", error);
+        }
+    
+        console.table(data);
+       // console.error(data);
+
+        init();
+    });
+
 }
 
 
