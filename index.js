@@ -45,6 +45,10 @@ function init() {
             case 'Add an Employee':
             addEmp();
             break;   
+
+            case 'Update an Employee Role':
+                updEmpRole();
+                break;   
     
             default:
                 console.log("Error");
@@ -181,7 +185,7 @@ function addEmp() {
         name: 'NULL',
         value: null
     }];
-    
+
     db.query("SELECT * FROM employee", (err, result) => {
         if (err) throw err;
 
@@ -219,6 +223,59 @@ function addEmp() {
                 }
     ]).then ((res) => {
         db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?)", [res.addNewEmpFirst, res.addNewEmpLast, res.addNewEmpRole, res.addNewEmpManager], (err, result) => {
+            if(err) throw err;
+            console.log("Success!")
+        
+            init();
+        });
+    });
+});
+});
+
+};
+
+function updEmpRole() {
+
+    const roleArray = [];
+    db.query("SELECT * FROM role", (err, result) => {
+        if (err) throw err;
+
+        result.forEach(role => {
+            let roleObj = {
+                name: role.title,
+                value: role.id
+            }
+            roleArray.push(roleObj);
+        });
+    
+    const employeeArray = [];
+    db.query("SELECT * FROM employee", (err, result) => {
+        if (err) throw err;
+
+        result.forEach(employee => {
+            let employeeObj = {
+                name: employee.first_name + " " + employee.last_name,
+                value: employee.id
+            }
+            employeeArray.push(employeeObj);
+
+        });
+
+
+    inquirer.prompt([{
+            type: 'list',
+            name: 'pickEmp',
+            message: 'Which employee are you looking for?',
+            choices: employeeArray
+            },  
+            {
+            type: 'list',
+            name: 'updEmpRole',
+            message: 'What role would you like to change to?',
+            choices: roleArray
+            }
+    ]).then ((res) => {
+        db.query("UPDATE employee SET role_id =(?) WHERE id=(?)", [res.updEmpRole, res.pickEmp],  (err, result) => {
             if(err) throw err;
             console.log("Success!")
         
