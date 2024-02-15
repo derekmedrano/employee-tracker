@@ -1,4 +1,5 @@
 const mysql = require('mysql2');
+const initialize = require('./index');
 
 // here is our config setup
 const connection = mysql.createConnection(
@@ -16,6 +17,7 @@ connection.connect(function(err) {
     }
     console.log("DB connected..");
 });
+
 
 // here we are allowing the OBJECT/method/data to be accessed OUTSIDE of this file
 module.exports = connection;
