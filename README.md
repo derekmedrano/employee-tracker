@@ -19,7 +19,13 @@ https://github.com/derekmedrano/employee-tracker/assets/42650709/9fdde0c0-ac31-4
 Project is installed via node.js. Necessary files are found in Github repo. It is recommended you Git clone onto your local machine.
 
 ## Usage
+PROJECT CONTAINS SEED FILE, THIS IS USED AN EXAMPLE AND CAN BE SEEDED WITH USERS CUSTOM DATABASES.
+
 Project is used in the console and deploys an inquirer based navigation menu. Use the arrow keys and the enter button to navigate the available options.
+Application uses MySQL2 and Inquirer packages dependancies.
+
+MySQL2 - https://www.npmjs.com/package/mysql2
+Inquirer - https://www.npmjs.com/package/inquirer
 
 ## License
 MIT
