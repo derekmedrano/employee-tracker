@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const db = require('./connection');
 
-
+// Code block that generates the the Navigation menu. This is created with the Inquirer prompt object-method.
 function init() {
 
     inquirer.prompt([
@@ -60,7 +60,7 @@ function init() {
 }
 
 
-
+//Function that holds the query for viewing departments
 function viewDepartments() {
     // we make an ASYNC QUERY to our DB 
     db.query("SELECT * FROM department;", function(error, data) {
@@ -75,7 +75,7 @@ function viewDepartments() {
     });
 
 }
-
+//Function that holds the query for viewing roles
 function viewRoles() {
     // we make an ASYNC QUERY to our DB 
     db.query("SELECT * FROM role;", function(error, data) {
@@ -91,6 +91,7 @@ function viewRoles() {
 
 }
 
+//Function that holds the query for viewing employees
 function ViewEmployees() {
     // we make an ASYNC QUERY to our DB 
     db.query("SELECT * FROM employee;", function(error, data) {
@@ -106,6 +107,7 @@ function ViewEmployees() {
 
 }
 
+//Function for adding a new department
 function addDepartment() {
     inquirer.prompt({
             type: 'input',
@@ -124,6 +126,8 @@ function addDepartment() {
     });
 };
 
+
+//Function for adding a new role 
 function addRole() {
 
     const departmentsArray = [];
@@ -167,6 +171,7 @@ function addRole() {
 
 };
 
+//Function for adding new employee. Users will be prompted for the new employees necessary info. Only the manager section can be NULL.
 function addEmp() {
 
     const roleArray = [];
@@ -234,6 +239,8 @@ function addEmp() {
 
 };
 
+
+//Function for updating an employee's new role.
 function updEmpRole() {
 
     const roleArray = [];
