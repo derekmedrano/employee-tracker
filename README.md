@@ -3,6 +3,10 @@
 ## Description
 This is a console-based application that allows users to manage employees, roles, and departments in a database of employees.
 
+Here's a quick demo to showcase the applications functionality:
+
+https://github.com/derekmedrano/employee-tracker/assets/42650709/9fdde0c0-ac31-4839-a91b-d083f5d002a8
+
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
